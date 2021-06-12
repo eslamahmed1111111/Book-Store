@@ -7,7 +7,7 @@ CREATE TABLE shopping_cart (
   ISBN int(11) NOT NULL,
   quantity int(11) default 1,
   PRIMARY KEY (ID,ISBN),
-  CONSTRAINT shopping_cart_fk FOREIGN KEY (ID) REFERENCES book (ISBN)
+  CONSTRAINT shopping_cart_fk FOREIGN KEY (ID) REFERENCES book (ISBN);
 )
 
 
