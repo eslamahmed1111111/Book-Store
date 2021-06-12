@@ -40,7 +40,7 @@ END ;;
 DELIMITER ;
  
  DELIMITER ;;
- CREATE TRIGGER books_AFTER_UPDATE AFTER UPDATE ON books
+ CREATE TRIGGER books_AFTER_UPDATE AFTER UPDATE ON book
  FOR EACH ROW BEGIN
  DECLARE i INT DEFAULT 0;
   IF (OLD.no_copies >= NEW.threshold_quantity && NEW.no_copies < NEW.threshold_quantity) THEN
