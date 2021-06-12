@@ -21,7 +21,7 @@ public class BookTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 7;
+        return 8;
     }
 
     @Override
@@ -78,12 +78,12 @@ public class BookTableModel extends AbstractTableModel {
         fireTableCellUpdated(r,c);
     }
 
-    public boolean isCellEditable(){
+    public boolean isCellEditable(int row, int col){
         return true;
     }
 
     public void newBook(){
-        books.add(new Book("ISBN","title","publisher","author","publication_year","0","category","0","0"));
+        books.add(new Book("ISBN","title","publisher","author","publication_year","price","category","num_of_copies","threshold_num"));
         fireTableDataChanged();
     }
     public void deleteBook(int index){

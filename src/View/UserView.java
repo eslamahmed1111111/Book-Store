@@ -123,9 +123,35 @@ public class UserView extends Frame{
     }
 
     public void viewShoppingCartPanel(){
-//        tableModel = new BookTableModel();
-//        customJTable = new CustomJTable(findABookPanel, tableModel);
-
+        shoppingCartPanel.setLayout(new BoxLayout(shoppingCartPanel,BoxLayout.Y_AXIS));
+        ShoppingCartTableModel tableModel = new ShoppingCartTableModel();
+        customJTable = new CustomJTable(shoppingCartPanel, tableModel);
+        JButton deleteBookButton = new JButton("delete Book");
+        JButton checkOutButton = new JButton("check out");
+        shoppingCartPanel.add(getPairLayouts(deleteBookButton,checkOutButton));
+        deleteBookButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                tableModel.deleteBook(customJTable.getTable().getSelectedRow());
+            }
+        });
+        checkOutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                JDialog dialog = new JDialog(getFrame(),"Enter Credit Card Information");
+                dialog.getContentPane().setLayout(new BoxLayout(dialog.getContentPane(),BoxLayout.Y_AXIS));
+                JLabel creditCardNumberLabel = new JLabel("Credit Card number:");
+                JTextField creditCardNumberTextField = new JTextField();
+                dialog.add(getPairLayouts(creditCardNumberLabel,creditCardNumberTextField));
+                JLabel expiryDateLabel = new JLabel("Expiry date:");
+                JTextField expiryDateTextField = new JTextField();
+                dialog.add(getPairLayouts(expiryDateLabel,expiryDateTextField));
+                JButton confirmButton = new JButton("Confirm");
+                dialog.add(confirmButton);
+                dialog.setSize(400,150);
+                dialog.setVisible(true);
+            }
+        });
     }
 
     public void view(){

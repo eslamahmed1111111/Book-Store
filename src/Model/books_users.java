@@ -24,7 +24,7 @@ public class books_users {
 
         BoxLayout boxlayout = new BoxLayout(books_panel, BoxLayout.Y_AXIS);
 
-        // Set the Boxayout to be Y_AXIS from top to down
+        // Set the BoxLayout to be Y_AXIS from top to down
         //BoxLayout boxlayout = new BoxLayout(panel, BoxLayout.Y_AXIS);
 
         books_panel.setLayout(boxlayout);

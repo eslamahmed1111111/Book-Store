@@ -191,8 +191,8 @@ public class Driver {
     }
 
 
-    public List<ShoppingCart> viewShoppingCart(String s){
-        List<ShoppingCart> shopping = new ArrayList<>();
+    public List<ShoppingCartItem> viewShoppingCart(String s){
+        List<ShoppingCartItem> shopping = new ArrayList<>();
         Connection myConnection = null;  //address of server
         Statement stmt = null;
         ResultSet res = null;
@@ -206,7 +206,7 @@ public class Driver {
             res = stmt.executeQuery(query);
 
             while (res.next()) {
-                ShoppingCart shop = convertToShoppingCart(res);
+                ShoppingCartItem shop = convertToShoppingCart(res);
                 shopping.add(shop);
             }
         }
@@ -236,7 +236,7 @@ public class Driver {
         return result;
     }
 
-    public void removeItemFromCart(ShoppingCart s){
+    public void removeItemFromCart(ShoppingCartItem s){
         Connection myConnection = null;  //address of server
         Statement stmt = null;
 
@@ -255,7 +255,7 @@ public class Driver {
     }
 
 
-    public void addToShoppingCart(ShoppingCart s){
+    public void addToShoppingCart(ShoppingCartItem s){
         Connection myConnection = null;  //address of server
         Statement stmt = null;
 
@@ -349,10 +349,10 @@ public class Driver {
 
 
 
-    public ShoppingCart convertToShoppingCart(ResultSet res){
-        ShoppingCart s = null;
+    public ShoppingCartItem convertToShoppingCart(ResultSet res){
+        ShoppingCartItem s = null;
         try {
-            s = new ShoppingCart(res.getString("user_name"),res.getString("ISBN"),
+            s = new ShoppingCartItem(res.getString("user_name"),res.getString("ISBN"),
                     res.getString("quantity"),res.getString("title"),
                     res.getString("publisher") , res.getString("author"),
                     res.getString("publication_year"), res.getString("price"),
