@@ -3,24 +3,25 @@ package Model;
 public class Book {
     private String ISBN;
     private String title;
-    private String publisher;
-    private String publication_year;
-    private String price;
+    private String publisher, author;
+    private String publicationYear;
+    private int price;
     private String category;
-    private String no_copies;
-    private String threshold_quantity;
+    private int numOfCopies;
+    private int thresholdQuantity;
 
-    public Book(String ISBN, String title, String publisher, String publication_year,
-                String price, String category, String no_copies, String threshold_quantity) {
+    public Book(String ISBN, String title, String publisher, String author, String publicationYear, int price, String category, int numOfCopies, int thresholdQuantity) {
         this.ISBN = ISBN;
         this.title = title;
         this.publisher = publisher;
-        this.publication_year = publication_year;
+        this.author = author;
+        this.publicationYear = publicationYear;
         this.price = price;
         this.category = category;
-        this.no_copies = no_copies;
-        this.threshold_quantity = threshold_quantity;
+        this.numOfCopies = numOfCopies;
+        this.thresholdQuantity = thresholdQuantity;
     }
+
 
     public String getISBN() {
         return ISBN;
@@ -46,20 +47,36 @@ public class Book {
         this.publisher = publisher;
     }
 
-    public String getPublication_year() {
-        return publication_year;
+    public String getPublicationYear() {
+        return publicationYear;
     }
 
-    public void setPublication_year(String publication_year) {
-        this.publication_year = publication_year;
-    }
-
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
+    }
+
+    public int getNumOfCopies() {
+        return numOfCopies;
+    }
+
+    public void setNumOfCopies(int numOfCopies) {
+        this.numOfCopies = numOfCopies;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setPublicationYear(String publicationYear) {
+        this.publicationYear = publicationYear;
     }
 
     public String getCategory() {
@@ -70,21 +87,13 @@ public class Book {
         this.category = category;
     }
 
-    public String getNo_copies() {
-        return no_copies;
+    public int getThresholdQuantity() {
+        return thresholdQuantity;
     }
 
-    public void setNo_copies(String no_copies) {
-        this.no_copies = no_copies;
+    public void setThresholdQuantity(int thresholdQuantity) {
+        this.thresholdQuantity = thresholdQuantity;
     }
-
-    public String getThreshold_quantity() {
-        return threshold_quantity;
-    }
-
-    public void setThreshold_quantity(String threshold_quantity) {
-        this.threshold_quantity = threshold_quantity;
-    }
-
-
 }
+
+

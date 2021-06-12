@@ -7,6 +7,7 @@ CREATE TABLE book (
   ISBN int(11) NOT NULL,
   title varchar(45) DEFAULT NULL,
   publisher varchar(45) DEFAULT NULL,
+  author varchar(45) DEFAULT NULL,
   publication_year year(4) DEFAULT NULL,
   price integer DEFAULT NULL,
   category varchar(45) DEFAULT NULL,

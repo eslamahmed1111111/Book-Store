@@ -98,8 +98,8 @@ public class Driver {
         Statement stmt = null;
 
         String query = "insert into book values( " + b.getISBN() + "," + b.getTitle() + "," +
-                b.getPublisher() + "," + b.getPublication_year() + "," + b.getPrice() + "," +
-                b.getCategory() + "," + b.getNo_copies() + "," + b.getThreshold_quantity() + ");";
+                b.getPublisher() + "," + b.getPublicationYear() + "," + b.getPrice() + "," +
+                b.getCategory() + "," + b.getNumOfCopies() + "," + b.getThresholdQuantity() + ");";
 
         try {
             stmt = myConnection.createStatement();
@@ -307,9 +307,9 @@ public class Driver {
 	   Book b = null;
 	    try{
 	        b = new Book(res.getString("ISBN"),res.getString("title")
-                   ,res.getString("publisher"),res.getString("publication_year"),
-                   res.getString("price"),res.getString("category"),
-                   res.getString("no_copies"),res.getString("threshold_quantity"));
+                   ,res.getString("publisher"),res.getString("author"),res.getString("publication_year"),
+                   res.getInt("price"),res.getString("category"),
+                   res.getInt("no_copies"),res.getInt("threshold_quantity"));
        }
 	   catch (Exception e){
 	       e.printStackTrace();
