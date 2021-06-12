@@ -7,9 +7,9 @@ import java.util.List;
 
 public class Driver {
 
-    final String url = "jdbc:mysql://127.0.0.1:3306/bookstore" ;
-    final String name = "root" ;
-    final String pass = "alahlyfc";
+    final String url = "" ;
+    final String name = "" ;
+    final String pass = "";
 	
 	public boolean signIn(String userName, String password) {
         Connection myConnection = null;  //address of server
