@@ -1,27 +1,37 @@
 package Model;
 
 public class User {
+
+
 	private String userName;
+	private String password;
 	private String firstName, lastName;
 	private String email;
 	private String phoneNumber;
 	private String shippingAddress;
-	
-	
-	public User(String userName, String firstName, String lastName, String email, String phoneNumber,
-			String shippingAddress) {
-		super();
+	private String privilege;
+
+
+	public User(String userName, String password, String firstName, String lastName, String email, String phoneNumber,
+				String shippingAddress, String privilege) {
+
 		this.userName = userName;
+		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
 		this.shippingAddress = shippingAddress;
+		this.privilege = privilege;
 	}
 
 
 	public String getUserName() {
 		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 
@@ -74,6 +84,19 @@ public class User {
 		this.shippingAddress = shippingAddress;
 	}
 
-	
+	public String getPassword() {
+		return password;
+	}
 
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getPrivilege() {
+		return privilege;
+	}
+
+	public void setPrivilege(String privilege) {
+		this.privilege = privilege;
+	}
 }

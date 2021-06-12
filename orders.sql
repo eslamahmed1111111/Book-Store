@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS book_orders;
 CREATE TABLE book_orders (
   user_name varchar(10) NOT NULL DEFAULT 'eslam',
   ISBN int(11) NOT NULL,
+  publisher  varchar(10) Not NULL,
   order_date datetime DEFAULT NULL,
   quantity int(11) DEFAULT '0',
   price integer DEFAULT '0',
