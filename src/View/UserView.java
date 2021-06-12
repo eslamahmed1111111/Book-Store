@@ -18,7 +18,7 @@ public class UserView extends Frame{
      *  search for books --> dialog(add to shopping cart)
      *  view && checkout shopping cart --> dialog.
      */
-    private JPanel findABookPanel, editProfilePanel, shoppingCartPanel;
+    protected JPanel findABookPanel, editProfilePanel, shoppingCartPanel;
 
     private void init(){
         editProfilePanel = new JPanel();
@@ -26,9 +26,40 @@ public class UserView extends Frame{
         shoppingCartPanel = new JPanel();
     }
 
+    protected BookTableModel tableModel;
+    protected CustomJTable customJTable;
 
     public void viewFindABookPanel(){
+        BoxLayout boxLayout = new BoxLayout(findABookPanel,BoxLayout.Y_AXIS);
+        findABookPanel.setLayout(boxLayout);
+        JTextField textField = new JTextField();
+        textField.setSize(20,20);
+        String[] items = {"ISBN","title","category","author","publisher"};
+        JComboBox comboBox = new JComboBox(items);
+        JLabel searchByLabel= new JLabel("search by");
+        JButton searchButton = new JButton("search");
+        findABookPanel.add(getPairLayouts(searchByLabel,comboBox));
+        findABookPanel.add(getPairLayouts(textField,searchButton));
+        tableModel = new BookTableModel();
+        customJTable = new CustomJTable(findABookPanel, tableModel);
 
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String text = textField.getText();
+                if(comboBox.getActionCommand().equals(items[0])){
+
+                }else if(comboBox.getActionCommand().equals(items[1])){
+
+                }else if(comboBox.getActionCommand().equals(items[2])){
+
+                }else if(comboBox.getActionCommand().equals(items[3])){
+
+                }else if(comboBox.getActionCommand().equals(items[4])){
+
+                }
+            }
+        });
     }
 
 
@@ -92,6 +123,8 @@ public class UserView extends Frame{
     }
 
     public void viewShoppingCartPanel(){
+//        tableModel = new BookTableModel();
+//        customJTable = new CustomJTable(findABookPanel, tableModel);
 
     }
 

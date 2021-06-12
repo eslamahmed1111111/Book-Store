@@ -1,4 +1,5 @@
 import Model.User;
+import View.CustomerView;
 import View.HomePage;
 import View.ManagerView;
 import View.UserView;
@@ -6,7 +7,7 @@ import View.UserView;
 public class Main {
 
     public static void main(String[] args){
-        UserView homePage = new ManagerView("Home Page");
+        UserView homePage = new CustomerView("Home Page");
         homePage.view();
     }
 

@@ -38,6 +38,28 @@ public class ManagerView extends UserView {
 
     }
 
+
+    public void viewFindABookPanel(){
+        super.viewFindABookPanel();
+        JButton addBookButton, deleteBookButton;
+        addBookButton = new JButton("add Book");
+        deleteBookButton = new JButton("delete Book");
+        addBookButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                tableModel.newBook();
+            }
+        });
+        deleteBookButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                tableModel.deleteBook(customJTable.getTable().getSelectedRow());
+            }
+        });
+
+        findABookPanel.add(getPairLayouts(addBookButton,deleteBookButton));
+    }
+
     public void view(){
         init();
         super.view();
@@ -50,7 +72,6 @@ public class ManagerView extends UserView {
         viewPlaceOrdersPanel();
         viewPromoteUsersPanel();
         viewReportsPanel();
-
         getFrame().pack();
     }
 }

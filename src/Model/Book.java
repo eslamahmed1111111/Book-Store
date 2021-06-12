@@ -3,13 +3,15 @@ package Model;
 public class Book {
     private String ISBN;
     private String title;
-    private String publisher,author;
+    private String publisher, author;
     private String publicationYear;
     private int price;
     private String category;
     private int numOfCopies;
+    private int thresholdQuantity;
 
-    public Book(String title, String publisher, String author, String publicationYear, int price, String category, int numOfCopies){
+    public Book(String ISBN, String title, String publisher, String author, String publicationYear, int price, String category, int numOfCopies, int thresholdQuantity) {
+        this.ISBN = ISBN;
         this.title = title;
         this.publisher = publisher;
         this.author = author;
@@ -17,8 +19,81 @@ public class Book {
         this.price = price;
         this.category = category;
         this.numOfCopies = numOfCopies;
+        this.thresholdQuantity = thresholdQuantity;
     }
 
 
+    public String getISBN() {
+        return ISBN;
+    }
 
+    public void setISBN(String ISBN) {
+        this.ISBN = ISBN;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public String getPublicationYear() {
+        return publicationYear;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public int getNumOfCopies() {
+        return numOfCopies;
+    }
+
+    public void setNumOfCopies(int numOfCopies) {
+        this.numOfCopies = numOfCopies;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setPublicationYear(String publicationYear) {
+        this.publicationYear = publicationYear;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public int getThresholdQuantity() {
+        return thresholdQuantity;
+    }
+
+    public void setThresholdQuantity(int thresholdQuantity) {
+        this.thresholdQuantity = thresholdQuantity;
+    }
 }
+
+
