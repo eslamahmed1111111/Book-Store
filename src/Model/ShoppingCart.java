@@ -6,10 +6,18 @@ public class ShoppingCart extends Book{
     private  String ISBN;
     private  String quantity;
 
+
+    public ShoppingCart(String user_name , String ISBN , String quantity){
+
+        this.user_name = user_name;
+        this.ISBN = ISBN;
+        this.quantity = quantity;
+    }
+
     public ShoppingCart(String user_name, String ISBN, String quantity,String title, String publisher,
-                        String publication_year, String price, String category, String no_copies,
+                        String author , String publication_year, String price, String category, String no_copies,
                         String threshold_quantity) {
-        super(ISBN, title , publisher , publication_year , price , category , no_copies , threshold_quantity);
+        super(ISBN, title , publisher , author , publication_year , price , category , no_copies , threshold_quantity);
         this.user_name = user_name;
         this.ISBN = ISBN;
         this.quantity = quantity;

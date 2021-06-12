@@ -1,15 +1,15 @@
 
 
 import Model.*;
-
-import java.awt.*;
 import java.sql.*;
 import java.util.*;
 import java.util.List;
 
 public class Driver {
 
-
+    final String url = "jdbc:mysql://127.0.0.1:3306/bookstore" ;
+    final String name = "root" ;
+    final String pass = "alahlyfc";
 	
 	public boolean signIn(String userName, String password) {
         Connection myConnection = null;  //address of server
@@ -21,6 +21,7 @@ public class Driver {
                 + password + ";";
 
         try {
+            myConnection = DriverManager.getConnection(url , name , pass);
             stmt = myConnection.createStatement();
             res = stmt.executeQuery(query);
 
@@ -44,6 +45,7 @@ public class Driver {
                 u.getPhoneNumber() + "," + u.getShippingAddress() + u.getPrivilege() +  ");";
 
         try {
+            myConnection = DriverManager.getConnection(url , name , pass);
             stmt = myConnection.createStatement();
             stmt.executeQuery(query);
         }
@@ -61,6 +63,7 @@ public class Driver {
         String query = "update users set privilege = 'customer' " +
                        " where user_name = " + u.getUserName() + ";" ;
         try {
+            myConnection = DriverManager.getConnection(url , name , pass);
             stmt = myConnection.createStatement();
             stmt.executeQuery(query);
         }
@@ -78,6 +81,7 @@ public class Driver {
        String query = "select * from book where " + s + ";";
 
        try {
+           myConnection = DriverManager.getConnection(url , name , pass);
            stmt = myConnection.createStatement();
            res = stmt.executeQuery(query);
 
@@ -102,6 +106,7 @@ public class Driver {
                 b.getCategory() + "," + b.getNumOfCopies() + "," + b.getThresholdQuantity() + ");";
 
         try {
+            myConnection = DriverManager.getConnection(url , name , pass);
             stmt = myConnection.createStatement();
             stmt.executeQuery(query);
         }
@@ -118,6 +123,7 @@ public class Driver {
 
         String query = "update book set " + s + " where ISBN = " + b.getISBN() + ";" ;
         try {
+            myConnection = DriverManager.getConnection(url , name , pass);
             stmt = myConnection.createStatement();
             stmt.executeQuery(query);
         }
@@ -135,6 +141,7 @@ public class Driver {
         String query = "delete from book where ISBN =  " + b.getISBN() + ";" ;
 
         try {
+            myConnection = DriverManager.getConnection(url , name , pass);
             stmt = myConnection.createStatement();
             stmt.executeQuery(query);
         }
@@ -153,6 +160,7 @@ public class Driver {
         String query = "select * from users where " + s + ";";
 
         try {
+            myConnection = DriverManager.getConnection(url , name , pass);
             stmt = myConnection.createStatement();
             res = stmt.executeQuery(query);
 
@@ -173,6 +181,7 @@ public class Driver {
 
         String query = "update users set " + s + " where user_name = " + u.getUserName() + ";" ;
         try {
+            myConnection = DriverManager.getConnection(url , name , pass);
             stmt = myConnection.createStatement();
             stmt.executeQuery(query);
         }
@@ -192,6 +201,7 @@ public class Driver {
                        "from shoppingCart NATURAL JOIN book where " + s + ";";
 
         try {
+            myConnection = DriverManager.getConnection(url , name , pass);
             stmt = myConnection.createStatement();
             res = stmt.executeQuery(query);
 
@@ -215,6 +225,7 @@ public class Driver {
         String query = "select SUM(price) from shoppingCart NATURAL JOIN book where "+ s + ";";
 
         try {
+            myConnection = DriverManager.getConnection(url , name , pass);
             stmt = myConnection.createStatement();
             res = stmt.executeQuery(query);
             result = res.getString(0);
@@ -233,6 +244,7 @@ public class Driver {
                  + s.getISBN() + ";" ;
 
         try {
+            myConnection = DriverManager.getConnection(url , name , pass);
             stmt = myConnection.createStatement();
             stmt.executeQuery(query);
         }
@@ -251,6 +263,7 @@ public class Driver {
                s.getQuantity() + ");";
 
         try {
+            myConnection = DriverManager.getConnection(url , name , pass);
             stmt = myConnection.createStatement();
             stmt.executeQuery(query);
         }
@@ -268,6 +281,7 @@ public class Driver {
                     ord.getOrder_date() + "," + ord.getQuantity() + "," + ord.getPrice() + ");";
 
         try {
+            myConnection = DriverManager.getConnection(url , name , pass);
             stmt = myConnection.createStatement();
             stmt.executeQuery(query);
         }
@@ -287,6 +301,7 @@ public class Driver {
                         + expiry_date + ";";
 
         try {
+            myConnection = DriverManager.getConnection(url , name , pass);
             stmt = myConnection.createStatement();
             res = stmt.executeQuery(query);
 
@@ -308,8 +323,8 @@ public class Driver {
 	    try{
 	        b = new Book(res.getString("ISBN"),res.getString("title")
                    ,res.getString("publisher"),res.getString("author"),res.getString("publication_year"),
-                   res.getInt("price"),res.getString("category"),
-                   res.getInt("no_copies"),res.getInt("threshold_quantity"));
+                   res.getString("price"),res.getString("category"),
+                   res.getString("no_copies"),res.getString("threshold_quantity"));
        }
 	   catch (Exception e){
 	       e.printStackTrace();
@@ -339,9 +354,10 @@ public class Driver {
         try {
             s = new ShoppingCart(res.getString("user_name"),res.getString("ISBN"),
                     res.getString("quantity"),res.getString("title"),
-                    res.getString("publisher"),res.getString("publication_year"),
-                    res.getString("price"),res.getString("category"),
-                    res.getString("no_copies"),res.getString("threshold_quantity"));
+                    res.getString("publisher") , res.getString("author"),
+                    res.getString("publication_year"), res.getString("price"),
+                    res.getString("category"), res.getString("no_copies"),
+                    res.getString("threshold_quantity"));
         }
         catch (Exception e){
             e.printStackTrace();
