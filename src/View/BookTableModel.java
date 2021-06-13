@@ -80,7 +80,11 @@ public class BookTableModel extends AbstractTableModel {
     }
 
     public boolean isCellEditable(int row, int col){
-        return row == selectedCell;
+        if(row == selectedCell){
+            if(col == 0) return getValueAt(row,col) == "ISBN";
+            return true;
+        }
+        return false;
     }
 
     public void newBook(){
