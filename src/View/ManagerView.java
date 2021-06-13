@@ -1,9 +1,12 @@
 package View;
 
+import Controller.Driver;
 import Model.Book;
+import Model.User;
 import Model.Order;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -14,6 +17,8 @@ public class ManagerView extends UserView {
     }
 
     private JPanel ordersPanel, promoteUsersPanel, reportsPanel;
+
+
 
     private void init(){
         ordersPanel = new JPanel();
@@ -64,7 +69,7 @@ public class ManagerView extends UserView {
 
     public void viewFindABookPanel(){
         super.viewFindABookPanel();
-        JButton addBookButton, modifyBookButton, deleteBookButton, newBookButton, placeOrderButton;
+        JButton addBookButton, deleteBookButton, newBookButton, placeOrderButton , modifyBookButton;
         addBookButton = new JButton("add Book");
         modifyBookButton = new JButton("modify Book");
         deleteBookButton = new JButton("delete Book");
@@ -86,8 +91,8 @@ public class ManagerView extends UserView {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 Book newBook = bookTableModel.getCertainBook(bookTableModel.getRowCount()-1);
-                modifyBookButton.setEnabled(true);
-                placeOrderButton.setEnabled(true);
+                drive.addBook(newBook);
+                System.out.println(newBook.toString());
                 addBookButton.setEnabled(false);
                 newBookButton.setEnabled(true);
                 bookTableModel.setSelectedCell(-1);
@@ -116,10 +121,14 @@ public class ManagerView extends UserView {
         deleteBookButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                if(bookCustomJTable.getTable().getSelectedRow() == -1) return;
-                bookTableModel.deleteBook(bookCustomJTable.getTable().getSelectedRow());
+                int row = bookCustomJTable.getTable().getSelectedRow();
+                 Book b = bookTableModel.getCertainBook(row);
+                drive.deleteBook(b);
+                bookTableModel.deleteBook(row);
+
             }
         });
+
         placeOrderButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -137,7 +146,7 @@ public class ManagerView extends UserView {
         init();
         super.view();
         JTabbedPane tabbedPane = (JTabbedPane) getMainPanel();
-        tabbedPane.addTab("confirm orders",ordersPanel);
+        tabbedPane.addTab("orders",ordersPanel);
         tabbedPane.addTab("promote users",promoteUsersPanel);
         tabbedPane.addTab("reports",reportsPanel);
         viewOrdersPanel();

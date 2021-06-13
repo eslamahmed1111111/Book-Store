@@ -1,5 +1,7 @@
 package View;
 
+import Controller.Driver;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
@@ -8,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class UserView extends Frame{
+
+    protected Driver drive = new Driver();
 
     public UserView(String title) {
         super(title);
