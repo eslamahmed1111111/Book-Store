@@ -14,6 +14,8 @@ import java.util.List;
 
 public class UserView extends Frame{
 
+    protected Driver drive = new Driver();
+
     public UserView(String title) {
         super(title);
     }
@@ -24,8 +26,6 @@ public class UserView extends Frame{
      *  view && checkout shopping cart --> dialog.
      */
     protected JPanel findABookPanel, editProfilePanel, shoppingCartPanel;
-
-    public Driver drive = new Driver();
 
     private void init(){
         editProfilePanel = new JPanel();

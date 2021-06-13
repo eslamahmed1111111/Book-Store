@@ -122,6 +122,10 @@ public class BookTableModel extends AbstractTableModel {
         return book;
     }
 
+    public void setBooks(ArrayList<Book> books){
+        this.books = books;
+        fireTableDataChanged();
+    }
 
     public int getSelectedCell() {
         return selectedCell;

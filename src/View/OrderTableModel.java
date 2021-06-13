@@ -56,6 +56,10 @@ public class OrderTableModel extends AbstractTableModel {
         return false;
     }
 
+    public void setOrders(ArrayList<Order> orders){
+        this.orders = orders;
+    }
+
     public void newOrder(Order order){
         if(orders.contains(order)) orders.get(orders.indexOf(order)).setQuantity(String.valueOf(Integer.parseInt(orders.get(orders.indexOf(order)).getQuantity())+1));
         else orders.add(order);
