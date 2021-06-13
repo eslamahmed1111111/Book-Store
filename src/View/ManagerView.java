@@ -51,7 +51,7 @@ public class ManagerView extends UserView {
 
     public void viewFindABookPanel(){
         super.viewFindABookPanel();
-        JButton addBookButton, deleteBookButton, newBookButton, placeOrderButton;
+        JButton addBookButton, deleteBookButton, newBookButton, placeOrderButton , modifyBookButton;
         addBookButton = new JButton("add Book");
         modifyBookButton = new JButton("modify Book");
         deleteBookButton = new JButton("delete Book");
@@ -110,7 +110,7 @@ public class ManagerView extends UserView {
 
             }
         });
-        placeOrderButton = new JButton("place order");
+
         placeOrderButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
