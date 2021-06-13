@@ -6,7 +6,7 @@
     <property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="853"/>
     <property name="com.jaspersoft.studio.data.defaultdataadapter" value="BookStore"/>
     <queryString language="SQL">
-        <![CDATA[SELECT SUM(no_copies * price)
+        <![CDATA[SELECT SUM(book.no_copies * price)
         from book,sales
         WHERE sales.ISBN=book.ISBN
         AND YEAR(sales.purchase_date) = YEAR(CURRENT_DATE() - INTERVAL 1 MONTH)
