@@ -101,9 +101,9 @@ public class Driver {
         Connection myConnection = null;  //address of server
         Statement stmt = null;
 
-        String query = "insert into book values( " + b.getISBN() + "," + b.getTitle() + "," +
-                b.getPublisher() + "," + b.getPublicationYear() + "," + b.getPrice() + "," +
-                b.getCategory() + "," + b.getNumOfCopies() + "," + b.getThresholdQuantity() + ");";
+        String query = "insert into book values( " + b.getISBN() + "," + "\'" + b.getTitle() + "\'" + "," +
+               "\'" + b.getPublisher()  + "\'" + "," +  "'" + b.getPublicationYear() + "\'" +  "," + b.getPrice() + "," +
+               "\'" + b.getCategory() + " \' " + "," + b.getNumOfCopies() + "," + b.getThresholdQuantity() + ");";
 
         try {
             myConnection = DriverManager.getConnection(url , name , pass);
