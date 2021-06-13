@@ -15,7 +15,7 @@ public class ManagerView extends UserView {
         super(title);
     }
 
-    public Driver drive = new Driver();
+
 
     private JPanel confirmOrdersPanel, placeOrdersPanel, promoteUsersPanel, reportsPanel;
 

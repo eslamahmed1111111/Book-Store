@@ -1,11 +1,16 @@
 package View;
 
+import Controller.Driver;
+import Model.Book;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserView extends Frame{
 
@@ -19,6 +24,8 @@ public class UserView extends Frame{
      *  view && checkout shopping cart --> dialog.
      */
     protected JPanel findABookPanel, editProfilePanel, shoppingCartPanel;
+
+    public Driver drive = new Driver();
 
     private void init(){
         editProfilePanel = new JPanel();
@@ -48,16 +55,29 @@ public class UserView extends Frame{
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 String text = textField.getText();
-                if(comboBox.getActionCommand().equals(items[0])){
+                if(comboBox.getSelectedItem().equals(items[0])){
+                           List<Book> b ;
+                           b =  drive.searchBook("ISBN = " + text);
+                           bookTableModel.setBooks((ArrayList<Book>) b);
+                }else if(comboBox.getSelectedItem().equals(items[1])){
+                    List<Book> b ;
+                    b =  drive.searchBook("title = '" + text + "'");
+                    bookTableModel.setBooks((ArrayList<Book>) b);
 
-                }else if(comboBox.getActionCommand().equals(items[1])){
+                }else if(comboBox.getSelectedItem().equals(items[2])){
+                    List<Book> b ;
+                    b =  drive.searchBook("category = '" + text + "'");
+                    bookTableModel.setBooks((ArrayList<Book>) b);
 
-                }else if(comboBox.getActionCommand().equals(items[2])){
+                }else if(comboBox.getSelectedItem().equals(items[3])){
+                    List<Book> b ;
+                    b =  drive.searchBook("author = '" + text + "'");
+                    bookTableModel.setBooks((ArrayList<Book>) b);
 
-                }else if(comboBox.getActionCommand().equals(items[3])){
-
-                }else if(comboBox.getActionCommand().equals(items[4])){
-
+                }else if(comboBox.getSelectedItem().equals(items[4])){
+                    List<Book> b ;
+                    b =  drive.searchBook("publisher = '" + text + "'");
+                    bookTableModel.setBooks((ArrayList<Book>) b);
                 }
             }
         });

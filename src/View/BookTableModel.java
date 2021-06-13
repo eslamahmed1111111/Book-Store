@@ -96,6 +96,12 @@ public class BookTableModel extends AbstractTableModel {
         books.add(new Book("ISBN","title","publisher","author","publication_year","price","category","no_copies","threshold_quantity"));
         fireTableDataChanged();
     }
+
+    public void setBooks(ArrayList<Book> books){
+        this.books = books;
+        fireTableDataChanged();
+    }
+
     public void deleteBook(int index){
         if(index < 0 || index >= books.size()) return;
         books.remove(index);
