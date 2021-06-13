@@ -138,9 +138,18 @@ public class UserView extends Frame{
         checkOutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                JDialog dialog = new JDialog();
-
-
+                JDialog dialog = new JDialog(getFrame(),"Enter Credit Card Information");
+                dialog.getContentPane().setLayout(new BoxLayout(dialog.getContentPane(),BoxLayout.Y_AXIS));
+                JLabel creditCardNumberLabel = new JLabel("Credit Card number:");
+                JTextField creditCardNumberTextField = new JTextField();
+                dialog.add(getPairLayouts(creditCardNumberLabel,creditCardNumberTextField));
+                JLabel expiryDateLabel = new JLabel("Expiry date:");
+                JTextField expiryDateTextField = new JTextField();
+                dialog.add(getPairLayouts(expiryDateLabel,expiryDateTextField));
+                JButton confirmButton = new JButton("Confirm");
+                dialog.add(confirmButton);
+                dialog.setSize(400,150);
+                dialog.setVisible(true);
             }
         });
     }

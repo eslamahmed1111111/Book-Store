@@ -11,7 +11,7 @@ public class HomePage extends Frame{
     public HomePage(String title) {
         super(title);
     }
-
+    
     public void view(){
         JPanel panel = new JPanel();
         JPanel panel1 = new JPanel();

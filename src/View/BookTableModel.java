@@ -78,7 +78,7 @@ public class BookTableModel extends AbstractTableModel {
         fireTableCellUpdated(r,c);
     }
 
-    public boolean isCellEditable(){
+    public boolean isCellEditable(int row, int col){
         return true;
     }
 
