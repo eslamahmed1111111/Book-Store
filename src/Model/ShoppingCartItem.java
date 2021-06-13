@@ -10,6 +10,12 @@ public class ShoppingCartItem{
     private  String ISBN;
     private  String quantity;
 
+    public ShoppingCartItem(String user_name, String ISBN , String quantity){
+        this.user_name = user_name;
+        this.ISBN = ISBN;
+        this.quantity = quantity;
+    }
+
     public ShoppingCartItem(String user_name, String ISBN, String quantity,String title, String publisher,
                         String author , String publication_year, String price, String category, String no_copies,
                         String threshold_quantity) {
@@ -54,7 +60,7 @@ public class ShoppingCartItem{
 
     @Override
     public boolean equals(Object o) {
-        if((o).equals(ISBN)) return true;
+        if((o.toString()).equals(ISBN)) return true;
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ShoppingCartItem that = (ShoppingCartItem) o;

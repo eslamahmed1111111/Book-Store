@@ -95,6 +95,8 @@ public class ManagerView extends UserView {
                 System.out.println(newBook.toString());
                 addBookButton.setEnabled(false);
                 newBookButton.setEnabled(true);
+                modifyBookButton.setEnabled(true);
+                placeOrderButton.setEnabled(true);
                 bookTableModel.setSelectedCell(-1);
             }
         });

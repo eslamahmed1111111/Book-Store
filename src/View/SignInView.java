@@ -1,32 +1,36 @@
 package View;
 
+import Controller.Driver;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class SignInView {
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Sign In");
-        JFrame.setDefaultLookAndFeelDecorated(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+public class SignInView extends Frame{
 
 
-        JPanel books_panel = new JPanel();
+    private Driver driver;
+    public SignInView() {
+        super("Sign In");
+        driver = new Driver();
+    }
+
+    public void view() {
+
         JPanel books_panel1 = new JPanel();
         JPanel books_panel2 = new JPanel();
         JPanel books_panel3 = new JPanel();
         JPanel books_panel4 = new JPanel();
 
-        books_panel.setBorder(new EmptyBorder(new Insets(50,200,200,200)) );
+        getMainPanel().setBorder(new EmptyBorder(new Insets(50,200,200,200)) );
         books_panel1.setBorder(new EmptyBorder(new Insets(50,20,50,20)) );
         books_panel2.setBorder(new EmptyBorder(new Insets(50,20,50,20)) );
         books_panel3.setBorder(new EmptyBorder(new Insets(50,20,50,20)) );
         books_panel4.setBorder(new EmptyBorder(new Insets(50,20,50,20)) );
 
-        BoxLayout boxlayout = new BoxLayout(books_panel, BoxLayout.Y_AXIS);
+        BoxLayout boxlayout = new BoxLayout(getMainPanel(), BoxLayout.Y_AXIS);
         BoxLayout boxlayout1 = new BoxLayout(books_panel1, BoxLayout.X_AXIS);
         BoxLayout boxlayout2 = new BoxLayout(books_panel2, BoxLayout.X_AXIS);
         BoxLayout boxlayout3 = new BoxLayout(books_panel3, BoxLayout.X_AXIS);
@@ -58,48 +62,42 @@ public class SignInView {
         bt2.setFont(new Font("Courier",Font.BOLD,15));
         bt2.setSize(900,700);
 
-       bt2.addActionListener(new ActionListener() {
-           @Override
-           public void actionPerformed(ActionEvent e) {
-               frame.setVisible(false);
+        bt1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                if(driver.signIn(label1.getText(),label2.getText())){
+                    getFrame().setVisible(false);
+                    new CustomerView("home page").view();
+                }
+            }
+        });
+
+        bt2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                getFrame().setVisible(false);
                 SingUpView singUpView = new SingUpView();
                 singUpView.view();
-           }
-       });
+            }
+        });
 
         books_panel4.add(bt1);
         books_panel4.add(bt2);
 
-        books_panel.setLayout(boxlayout);
+        getMainPanel().setLayout(boxlayout);
         books_panel1.setLayout(boxlayout1);
         books_panel2.setLayout(boxlayout2);
         books_panel3.setLayout(boxlayout3);
         books_panel4.setLayout(boxlayout4);
 
-        books_panel.add(books_panel1);
-        books_panel.add(books_panel2);
-        books_panel.add(books_panel3);
-        books_panel.add(books_panel4);
-      /* JTextField textField1 = new JTextField();
-        JButton button1 = new JButton();
-        JButton button2 = new JButton();
-        JButton button3 = new JButton();*/
+        getMainPanel().add(books_panel1);
+        getMainPanel().add(books_panel2);
+        getMainPanel().add(books_panel3);
+        getMainPanel().add(books_panel4);
 
 
-
-
-
-        // Define new buttons
-
-
-        // Add buttons to the frame (and spaces between buttons)
-
-
-        frame.add(books_panel);
-        frame.pack();
-        frame.setVisible(true);
-
-
+        getFrame().add(getMainPanel());
+        getFrame().pack();
 
     }
 
