@@ -123,9 +123,26 @@ public class UserView extends Frame{
     }
 
     public void viewShoppingCartPanel(){
-//        tableModel = new BookTableModel();
-//        customJTable = new CustomJTable(findABookPanel, tableModel);
+        shoppingCartPanel.setLayout(new BoxLayout(shoppingCartPanel,BoxLayout.Y_AXIS));
+        ShoppingCartTableModel tableModel = new ShoppingCartTableModel();
+        customJTable = new CustomJTable(shoppingCartPanel, tableModel);
+        JButton deleteBookButton = new JButton("delete Book");
+        JButton checkOutButton = new JButton("check out");
+        shoppingCartPanel.add(getPairLayouts(deleteBookButton,checkOutButton));
+        deleteBookButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                tableModel.deleteBook(customJTable.getTable().getSelectedRow());
+            }
+        });
+        checkOutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                JDialog dialog = new JDialog();
 
+
+            }
+        });
     }
 
     public void view(){

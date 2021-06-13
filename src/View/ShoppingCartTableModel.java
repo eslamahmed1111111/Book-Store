@@ -6,44 +6,40 @@ import Model.ShoppingCart;
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 
-public class ShoppingCartTableModel  {
+public class ShoppingCartTableModel extends AbstractTableModel {
     private String[] cols = {"ISBN", "title", "publisher",  "category", "price", "quantity"};
     private ArrayList<ShoppingCart> shoppingCarts;
-/*
+
     public ShoppingCartTableModel(){
         shoppingCarts = new ArrayList<>();
-        shoppingCarts.add(new ShoppingCart());
+        shoppingCarts.add(new ShoppingCart("id","us","sdf","fsd","Fsd","fsd"));
     }
 
     @Override
     public int getRowCount() {
-        return books.size();
+        return shoppingCarts.size();
     }
 
     @Override
     public int getColumnCount() {
-        return 7;
+        return 6;
     }
 
     @Override
     public Object getValueAt(int r, int c) {
         switch (c){
             case 0:
-                return books.get(r).getISBN();
+                return shoppingCarts.get(r).getISBN();
             case 1:
-                return books.get(r).getTitle();
+                return shoppingCarts.get(r).getTitle();
             case 2:
-                return books.get(r).getPublisher();
+                return shoppingCarts.get(r).getPublisher();
             case 3:
-                return books.get(r).getAuthor();
+                return shoppingCarts.get(r).getCategory();
             case 4:
-                return books.get(r).getPublicationYear();
+                return shoppingCarts.get(r).getPrice();
             case 5:
-                return books.get(r).getPrice();
-            case 6:
-                return books.get(r).getCategory();
-            case 7:
-                return books.get(r).getNumOfCopies();
+                return shoppingCarts.get(r).getQuantity();
         }
         return null;
     }
@@ -53,46 +49,41 @@ public class ShoppingCartTableModel  {
     public void setValueAt(Object value, int r, int c){
         switch (c){
             case 0:
-                books.get(r).setISBN((String) value);
+                shoppingCarts.get(r).setISBN((String) value);
                 break;
             case 1:
-                books.get(r).setTitle((String) value);
+                shoppingCarts.get(r).setTitle((String) value);
                 break;
             case 2:
-                books.get(r).setPublisher((String) value);
+                shoppingCarts.get(r).setPublisher((String) value);
                 break;
             case 3:
-                books.get(r).setAuthor((String) value);
+                shoppingCarts.get(r).setCategory((String) value);
                 break;
             case 4:
-                books.get(r).setPublicationYear((String) value);
+                shoppingCarts.get(r).setPrice((String) value);
                 break;
             case 5:
-                books.get(r).setPrice((Integer) value);
+                shoppingCarts.get(r).setQuantity((String) value);
                 break;
-            case 6:
-                books.get(r).setCategory((String) value);
-                break;
-            case 7:
-                books.get(r).setNumOfCopies((Integer) value);
         }
         fireTableCellUpdated(r,c);
     }
 
     public boolean isCellEditable(){
-        return true;
+        return false;
     }
 
-    public void newBook(){
-        books.add(new Book("ISBN","title","publisher","author","publication_year",0,"category",0,0));
+    public void newBook(Book book){
+        if(shoppingCarts.contains(book)) shoppingCarts.get(shoppingCarts.indexOf(book)).setQuantity(shoppingCarts.get(shoppingCarts.indexOf(book)).getQuantity()+1);
+        else shoppingCarts.add(new ShoppingCart(book.getISBN(),book.getTitle(),book.getPublisher(),book.getCategory(),book.getPrice(),"1"));
         fireTableDataChanged();
     }
     public void deleteBook(int index){
-        System.out.println(index);
         if(index == -1) return;
-        books.remove(index);
+        shoppingCarts.remove(index);
         fireTableDataChanged();
     }
-*/
+
 
 }

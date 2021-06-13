@@ -11,7 +11,7 @@ public class BookTableModel extends AbstractTableModel {
 
     public BookTableModel(){
         books = new ArrayList<>();
-        books.add(new Book("1","title","pub","au","45",54,"sd",57,57));
+        books.add(new Book("1","title","pub","au","45","54","sd","57","57"));
     }
 
     @Override
@@ -21,7 +21,7 @@ public class BookTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 7;
+        return 8;
     }
 
     @Override
@@ -67,13 +67,13 @@ public class BookTableModel extends AbstractTableModel {
                 books.get(r).setPublicationYear((String) value);
                 break;
             case 5:
-                books.get(r).setPrice((Integer) value);
+                books.get(r).setPrice((String) value);
                 break;
             case 6:
                 books.get(r).setCategory((String) value);
                 break;
             case 7:
-                books.get(r).setNumOfCopies((Integer) value);
+                books.get(r).setNumOfCopies((String) value);
         }
         fireTableCellUpdated(r,c);
     }
@@ -83,7 +83,7 @@ public class BookTableModel extends AbstractTableModel {
     }
 
     public void newBook(){
-        books.add(new Book("ISBN","title","publisher","author","publication_year",0,"category",0,0));
+        books.add(new Book("ISBN","title","publisher","author","publication_year","price","category","num_of_copies","threshold_num"));
         fireTableDataChanged();
     }
     public void deleteBook(int index){
