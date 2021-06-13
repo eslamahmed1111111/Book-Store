@@ -39,9 +39,22 @@ public class ManagerView extends UserView {
     }
 
 
-
+    protected UserTableModel userTableModel;
+    protected CustomJTable userCustomJTable;
     public void viewPromoteUsersPanel(){
-
+        promoteUsersPanel.setLayout(new BoxLayout(promoteUsersPanel,BoxLayout.Y_AXIS));
+        userTableModel = new UserTableModel();
+        userCustomJTable = new CustomJTable(promoteUsersPanel,userTableModel);
+        JButton promoteButton = new JButton("promote");
+        promoteUsersPanel.add(promoteButton);
+        promoteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                if(userCustomJTable.getTable().getSelectedRow() == -1) return;
+                String user_name = (String) userTableModel.getValueAt(userCustomJTable.getTable().getSelectedRow(),0);
+                userTableModel.moveToManager(user_name);
+            }
+        });
     }
 
     public void viewReportsPanel(){
