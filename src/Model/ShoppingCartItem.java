@@ -54,6 +54,7 @@ public class ShoppingCartItem{
 
     @Override
     public boolean equals(Object o) {
+        if((o).equals(ISBN)) return true;
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ShoppingCartItem that = (ShoppingCartItem) o;

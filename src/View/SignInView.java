@@ -1,13 +1,15 @@
+package View;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class books_users {
+public class SignInView {
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("books_users");
+        JFrame frame = new JFrame("Sign In");
         JFrame.setDefaultLookAndFeelDecorated(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -60,7 +62,8 @@ public class books_users {
            @Override
            public void actionPerformed(ActionEvent e) {
                frame.setVisible(false);
-               registeration r = new registeration();
+                SingUpView singUpView = new SingUpView();
+                singUpView.view();
            }
        });
 
