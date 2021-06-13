@@ -6,31 +6,36 @@ import Model.Order;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class ManagerView extends UserView {
     public ManagerView(String title){
         super(title);
     }
 
-    private JPanel confirmOrdersPanel, placeOrdersPanel, promoteUsersPanel, reportsPanel;
+    private JPanel ordersPanel, promoteUsersPanel, reportsPanel;
 
     private void init(){
-        confirmOrdersPanel = new JPanel();
-        placeOrdersPanel = new JPanel();
+        ordersPanel = new JPanel();
         promoteUsersPanel = new JPanel();
         reportsPanel = new JPanel();
     }
 
-
-    public void viewConfirmOrdersPanel(){
-
-    }
-
     protected OrderTableModel orderTableModel;
     protected CustomJTable orderCustomTableModel;
-    public void viewPlaceOrdersPanel(){
+    public void viewOrdersPanel(){
+        ordersPanel.setLayout(new BoxLayout(ordersPanel,BoxLayout.Y_AXIS));
         orderTableModel = new OrderTableModel();
-        orderCustomTableModel = new CustomJTable(placeOrdersPanel,orderTableModel);
+        orderCustomTableModel = new CustomJTable(ordersPanel,orderTableModel);
+        JButton confirmButton = new JButton("confirm");
+        ordersPanel.add(confirmButton);
+        confirmButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                // todo database call.
+                orderTableModel.setOrders(new ArrayList<>());
+            }
+        });
     }
 
 
@@ -132,12 +137,10 @@ public class ManagerView extends UserView {
         init();
         super.view();
         JTabbedPane tabbedPane = (JTabbedPane) getMainPanel();
-        tabbedPane.addTab("confirm orders",confirmOrdersPanel);
-        tabbedPane.addTab("place orders",placeOrdersPanel);
+        tabbedPane.addTab("confirm orders",ordersPanel);
         tabbedPane.addTab("promote users",promoteUsersPanel);
         tabbedPane.addTab("reports",reportsPanel);
-        viewConfirmOrdersPanel();
-        viewPlaceOrdersPanel();
+        viewOrdersPanel();
         viewPromoteUsersPanel();
         viewReportsPanel();
         getFrame().pack();

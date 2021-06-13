@@ -48,15 +48,15 @@ public class UserView extends Frame{
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 String text = textField.getText();
-                if(comboBox.getActionCommand().equals(items[0])){
+                if(comboBox.getSelectedItem().equals(items[0])){
 
-                }else if(comboBox.getActionCommand().equals(items[1])){
+                }else if(comboBox.getSelectedItem().equals(items[1])){
 
-                }else if(comboBox.getActionCommand().equals(items[2])){
+                }else if(comboBox.getSelectedItem().equals(items[2])){
 
-                }else if(comboBox.getActionCommand().equals(items[3])){
+                }else if(comboBox.getSelectedItem().equals(items[3])){
 
-                }else if(comboBox.getActionCommand().equals(items[4])){
+                }else if(comboBox.getSelectedItem().equals(items[4])){
 
                 }
             }
@@ -179,5 +179,4 @@ public class UserView extends Frame{
        getFrame().add(getMainPanel());
        getFrame().pack();
     }
-
 }
