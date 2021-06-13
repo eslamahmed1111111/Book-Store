@@ -10,6 +10,4 @@ public class Main {
         UserView homePage = new ManagerView("Home Page");
         homePage.view();
     }
-
-
 }

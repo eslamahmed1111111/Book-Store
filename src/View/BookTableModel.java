@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class BookTableModel extends AbstractTableModel {
     private int selectedCell = -1;
-    private String[] cols = {"ISBN","title","publisher","author","publication_year","price","category","no_copies"};
+    private String[] cols = {"ISBN","title","publisher","author","publication_year","price","category","no_copies" , "threshold_quantity"};
     private ArrayList<Book> books;
 
     public BookTableModel(){
@@ -22,7 +22,7 @@ public class BookTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 8;
+        return 9;
     }
 
     @Override
@@ -44,6 +44,8 @@ public class BookTableModel extends AbstractTableModel {
                 return books.get(r).getCategory();
             case 7:
                 return books.get(r).getNumOfCopies();
+            case 8:
+                return books.get(r).getThresholdQuantity();
         }
         return null;
     }
@@ -75,6 +77,9 @@ public class BookTableModel extends AbstractTableModel {
                 break;
             case 7:
                 books.get(r).setNumOfCopies((String) value);
+                break;
+            case 8:
+                books.get(r).setThresholdQuantity((String) value);
         }
         fireTableCellUpdated(r,c);
     }
@@ -84,7 +89,7 @@ public class BookTableModel extends AbstractTableModel {
     }
 
     public void newBook(){
-        books.add(new Book("ISBN","title","publisher","author","publication_year","price","category","num_of_copies","threshold_num"));
+        books.add(new Book("ISBN","title","publisher","author","publication_year","price","category","no_copies","threshold_quantity"));
         fireTableDataChanged();
     }
     public void deleteBook(int index){
@@ -103,6 +108,7 @@ public class BookTableModel extends AbstractTableModel {
         book.setPrice((String) getValueAt(row,5));
         book.setCategory((String) getValueAt(row,6));
         book.setNumOfCopies((String) getValueAt(row,7));
+        book.setThresholdQuantity((String) getValueAt(row,8));
         return book;
     }
 

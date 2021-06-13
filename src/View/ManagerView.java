@@ -1,5 +1,6 @@
 package View;
 
+import Controller.Driver;
 import Model.Book;
 import Model.User;
 
@@ -12,6 +13,8 @@ public class ManagerView extends UserView {
     public ManagerView(String title){
         super(title);
     }
+
+    public Driver drive = new Driver();
 
     private JPanel confirmOrdersPanel, placeOrdersPanel, promoteUsersPanel, reportsPanel;
 
@@ -60,6 +63,7 @@ public class ManagerView extends UserView {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 Book newBook = bookTableModel.getCertainBook(bookTableModel.getRowCount()-1);
+                drive.addBook(newBook);
                 System.out.println(newBook.toString());
                 addBookButton.setEnabled(false);
                 newBookButton.setEnabled(true);
@@ -69,7 +73,10 @@ public class ManagerView extends UserView {
         deleteBookButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                bookTableModel.deleteBook(bookCustomJTable.getTable().getSelectedRow());
+                int row = bookCustomJTable.getTable().getSelectedRow();
+                 Book b = bookTableModel.getCertainBook(row);
+                drive.deleteBook(b);
+                bookTableModel.deleteBook(row);
 
             }
         });
