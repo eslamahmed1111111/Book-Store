@@ -60,7 +60,7 @@ public class ShoppingCartTableModel extends AbstractTableModel {
     }
 
     public void newBook(Book book){
-        if(shoppingCarts.contains(book)) shoppingCarts.get(shoppingCarts.indexOf(book)).setQuantity(shoppingCarts.get(shoppingCarts.indexOf(book)).getQuantity()+1);
+        if(shoppingCarts.contains(book.getISBN())) shoppingCarts.get(shoppingCarts.indexOf(book)).setQuantity(String.valueOf(Integer.parseInt(shoppingCarts.get(shoppingCarts.indexOf(book)).getQuantity())+1));
         else shoppingCarts.add(new ShoppingCartItem(book.getISBN(),getId(),"1",book.getTitle(),book.getPublisher(),book.getAuthor(),book.getPublicationYear(),book.getPrice(),book.getCategory(),book.getNumOfCopies(),book.getThresholdQuantity()));
         fireTableDataChanged();
     }
