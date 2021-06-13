@@ -25,6 +25,10 @@ public class User {
 		this.privilege = privilege;
 	}
 
+	public User() {
+
+	}
+
 
 	public String getUserName() {
 		return userName;

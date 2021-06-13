@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.Objects;
+
 public class Order {
 
     private String user_name;
@@ -54,5 +56,18 @@ public class Order {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return Objects.equals(user_name, order.user_name) && Objects.equals(ISBN, order.ISBN) && Objects.equals(order_date, order.order_date) && Objects.equals(quantity, order.quantity) && Objects.equals(price, order.price);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(user_name, ISBN, order_date, quantity, price);
     }
 }

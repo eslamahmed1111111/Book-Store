@@ -1,6 +1,8 @@
 package Model;
 
 
+import java.util.Objects;
+
 public class ShoppingCartItem{
 
     private Book book;
@@ -48,5 +50,18 @@ public class ShoppingCartItem{
 
     public void setQuantity(String quantity) {
         this.quantity = quantity;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ShoppingCartItem that = (ShoppingCartItem) o;
+        return Objects.equals(book, that.book) && Objects.equals(user_name, that.user_name) && Objects.equals(ISBN, that.ISBN) && Objects.equals(quantity, that.quantity);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(book, user_name, ISBN, quantity);
     }
 }

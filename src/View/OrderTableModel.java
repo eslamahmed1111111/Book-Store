@@ -1,47 +1,44 @@
 package View;
 
 import Model.Book;
+import Model.Order;
 import Model.ShoppingCartItem;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 
-public class OrderTableModel {}/* extends AbstractTableModel {
-    private int id;
-    private String[] cols = {"ISBN", "title", "publisher",  "category", "price", "quantity"};
-    private ArrayList<ShoppingCartItem> shoppingCarts;
+public class OrderTableModel extends AbstractTableModel {
+    private String[] cols = {"user_name", "ISBN", "order_date",  "quantity", "price"};
+    private ArrayList<Order> orders;
 
-    public ShoppingCartTableModel(){
-        id = 0;
-        shoppingCarts = new ArrayList<>();
-        shoppingCarts.add(new ShoppingCartItem("id","us","sdf","fsd","Fsd","fsd","df","df","fd","fd","fd"));
+    public OrderTableModel(){
+        orders = new ArrayList<>();
+        orders.add(new Order("user_name", "ISBN", "order_date",  "quantity", "price"));
     }
 
     @Override
     public int getRowCount() {
-        return shoppingCarts.size();
+        return orders.size();
     }
 
     @Override
     public int getColumnCount() {
-        return 6;
+        return 5;
     }
 
     @Override
     public Object getValueAt(int r, int c) {
         switch (c){
             case 0:
-                return shoppingCarts.get(r).getISBN();
+                return orders.get(r).getUser_name();
             case 1:
-                return shoppingCarts.get(r).getBook().getTitle();
+                return orders.get(r).getISBN();
             case 2:
-                return shoppingCarts.get(r).getBook().getPublisher();
+                return orders.get(r).getOrder_date();
             case 3:
-                return shoppingCarts.get(r).getBook().getCategory();
+                return orders.get(r).getQuantity();
             case 4:
-                return shoppingCarts.get(r).getBook().getPrice();
-            case 5:
-                return shoppingCarts.get(r).getQuantity();
+                return orders.get(r).getPrice();
         }
         return null;
     }
@@ -50,29 +47,19 @@ public class OrderTableModel {}/* extends AbstractTableModel {
     }
     public void setValueAt(Object value, int r, int c){
         if (c == 5){
-            shoppingCarts.get(r).setQuantity((String) value);
+            orders.get(r).setQuantity((String) value);
         }
         fireTableCellUpdated(r,c);
     }
 
     public boolean isCellEditable(int row, int col){
-        return col == 5;
+        return false;
     }
 
-    public void newBook(Book book){
-        if(shoppingCarts.contains(book)) shoppingCarts.get(shoppingCarts.indexOf(book)).setQuantity(shoppingCarts.get(shoppingCarts.indexOf(book)).getQuantity()+1);
-        else shoppingCarts.add(new ShoppingCartItem(book.getISBN(),getId(),"1",book.getTitle(),book.getPublisher(),book.getAuthor(),book.getPublicationYear(),book.getPrice(),book.getCategory(),book.getNumOfCopies(),book.getThresholdQuantity()));
-        fireTableDataChanged();
-    }
-    public String getId(){
-        id++;
-        return String.valueOf(id);
-    }
-    public void deleteBook(int index){
-        if(index == -1) return;
-        shoppingCarts.remove(index);
+    public void newOrder(Order order){
+        if(orders.contains(order)) orders.get(orders.indexOf(order)).setQuantity(String.valueOf(Integer.parseInt(orders.get(orders.indexOf(order)).getQuantity())+1));
+        else orders.add(order);
         fireTableDataChanged();
     }
 
-
-}*/
+}

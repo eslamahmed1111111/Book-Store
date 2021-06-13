@@ -3,6 +3,7 @@ package View;
 import Controller.Driver;
 import Model.Book;
 import Model.User;
+import Model.Order;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,9 +31,14 @@ public class ManagerView extends UserView {
 
     }
 
+    protected OrderTableModel orderTableModel;
+    protected CustomJTable orderCustomTableModel;
     public void viewPlaceOrdersPanel(){
-
+        orderTableModel = new OrderTableModel();
+        orderCustomTableModel = new CustomJTable(placeOrdersPanel,orderTableModel);
     }
+
+
 
     public void viewPromoteUsersPanel(){
 
@@ -47,14 +53,18 @@ public class ManagerView extends UserView {
         super.viewFindABookPanel();
         JButton addBookButton, deleteBookButton, newBookButton, placeOrderButton;
         addBookButton = new JButton("add Book");
+        modifyBookButton = new JButton("modify Book");
         deleteBookButton = new JButton("delete Book");
         newBookButton = new JButton("new Book");
+        placeOrderButton = new JButton("place order");
         addBookButton.setEnabled(false);
         newBookButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 bookTableModel.newBook();
                 bookTableModel.setSelectedCell(bookTableModel.getRowCount()-1);
+                modifyBookButton.setEnabled(false);
+                placeOrderButton.setEnabled(false);
                 addBookButton.setEnabled(true);
                 newBookButton.setEnabled(false);
             }
@@ -68,6 +78,26 @@ public class ManagerView extends UserView {
                 addBookButton.setEnabled(false);
                 newBookButton.setEnabled(true);
                 bookTableModel.setSelectedCell(-1);
+            }
+        });
+        modifyBookButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                if(modifyBookButton.getText().equals("modify Book")) {
+                    if(bookCustomJTable.getTable().getSelectedRow() == -1) return;
+                    modifyBookButton.setText("save");
+                    placeOrderButton.setEnabled(false);
+                    addBookButton.setEnabled(false);
+                    newBookButton.setEnabled(false);
+                    bookTableModel.setSelectedCell(bookCustomJTable.getTable().getSelectedRow());
+                }else{
+                    modifyBookButton.setText("modify Book");
+                    Book modifiedBook = bookTableModel.getCertainBook(bookTableModel.getSelectedCell());
+                    bookTableModel.setSelectedCell(-1);
+                    placeOrderButton.setEnabled(true);
+                    addBookButton.setEnabled(true);
+                    newBookButton.setEnabled(true);
+                }
             }
         });
         deleteBookButton.addActionListener(new ActionListener() {
@@ -84,7 +114,10 @@ public class ManagerView extends UserView {
         placeOrderButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
+                if(bookCustomJTable.getTable().getSelectedRow() == -1) return;
+                Book selectedBook = bookTableModel.getCertainBook(bookCustomJTable.getTable().getSelectedRow());
+                Order order = new Order("",selectedBook.getISBN(),"","1",selectedBook.getPrice());
+                orderTableModel.newOrder(order);
             }
         });
 

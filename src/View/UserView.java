@@ -61,6 +61,14 @@ public class UserView extends Frame{
                 }
             }
         });
+
+        addToShoppingCartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                if(bookCustomJTable.getTable().getSelectedRow() == -1) return;
+                shoppingCartTableModel.newBook(bookTableModel.getCertainBook(bookCustomJTable.getTable().getSelectedRow()));
+            }
+        });
     }
 
 
