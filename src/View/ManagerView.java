@@ -1,6 +1,7 @@
 package View;
 
 import Model.Book;
+import Model.Order;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -25,9 +26,14 @@ public class ManagerView extends UserView {
 
     }
 
+    protected OrderTableModel orderTableModel;
+    protected CustomJTable orderCustomTableModel;
     public void viewPlaceOrdersPanel(){
-
+        orderTableModel = new OrderTableModel();
+        orderCustomTableModel = new CustomJTable(placeOrdersPanel,orderTableModel);
     }
+
+
 
     public void viewPromoteUsersPanel(){
 
@@ -92,14 +98,17 @@ public class ManagerView extends UserView {
         deleteBookButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                if(bookCustomJTable.getTable().getSelectedRow() == -1) return;
                 bookTableModel.deleteBook(bookCustomJTable.getTable().getSelectedRow());
-
             }
         });
         placeOrderButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
+                if(bookCustomJTable.getTable().getSelectedRow() == -1) return;
+                Book selectedBook = bookTableModel.getCertainBook(bookCustomJTable.getTable().getSelectedRow());
+                Order order = new Order("",selectedBook.getISBN(),"","1",selectedBook.getPrice());
+                orderTableModel.newOrder(order);
             }
         });
 

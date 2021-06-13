@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.Objects;
+
 public class Book {
     private String ISBN;
     private String title;
@@ -113,6 +115,19 @@ public class Book {
                 ", numOfCopies='" + numOfCopies + '\'' +
                 ", thresholdQuantity='" + thresholdQuantity + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return Objects.equals(ISBN, book.ISBN) && Objects.equals(title, book.title) && Objects.equals(publisher, book.publisher) && Objects.equals(author, book.author) && Objects.equals(publicationYear, book.publicationYear) && Objects.equals(price, book.price) && Objects.equals(category, book.category) && Objects.equals(numOfCopies, book.numOfCopies) && Objects.equals(thresholdQuantity, book.thresholdQuantity);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ISBN, title, publisher, author, publicationYear, price, category, numOfCopies, thresholdQuantity);
     }
 }
 
