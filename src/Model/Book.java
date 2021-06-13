@@ -23,6 +23,10 @@ public class Book {
         this.thresholdQuantity = thresholdQuantity;
     }
 
+    public Book() {
+
+    }
+
 
     public String getISBN() {
         return ISBN;
@@ -94,6 +98,21 @@ public class Book {
 
     public void setThresholdQuantity(String thresholdQuantity) {
         this.thresholdQuantity = thresholdQuantity;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "ISBN='" + ISBN + '\'' +
+                ", title='" + title + '\'' +
+                ", publisher='" + publisher + '\'' +
+                ", author='" + author + '\'' +
+                ", publicationYear='" + publicationYear + '\'' +
+                ", price='" + price + '\'' +
+                ", category='" + category + '\'' +
+                ", numOfCopies='" + numOfCopies + '\'' +
+                ", thresholdQuantity='" + thresholdQuantity + '\'' +
+                '}';
     }
 }
 

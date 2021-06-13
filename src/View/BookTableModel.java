@@ -6,6 +6,7 @@ import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 
 public class BookTableModel extends AbstractTableModel {
+    private int selectedCell = -1;
     private String[] cols = {"ISBN","title","publisher","author","publication_year","price","category","no_copies"};
     private ArrayList<Book> books;
 
@@ -79,7 +80,7 @@ public class BookTableModel extends AbstractTableModel {
     }
 
     public boolean isCellEditable(int row, int col){
-        return true;
+        return row == selectedCell;
     }
 
     public void newBook(){
@@ -92,5 +93,25 @@ public class BookTableModel extends AbstractTableModel {
         fireTableDataChanged();
     }
 
+    public Book getCertainBook(int row){
+        Book book = new Book();
+        book.setISBN((String) getValueAt(row,0));
+        book.setTitle((String) getValueAt(row,1));
+        book.setPublisher((String) getValueAt(row,2));
+        book.setAuthor((String) getValueAt(row,3));
+        book.setPublicationYear((String) getValueAt(row,4));
+        book.setPrice((String) getValueAt(row,5));
+        book.setCategory((String) getValueAt(row,6));
+        book.setNumOfCopies((String) getValueAt(row,7));
+        return book;
+    }
 
+
+    public int getSelectedCell() {
+        return selectedCell;
+    }
+
+    public void setSelectedCell(int selectedCell) {
+        this.selectedCell = selectedCell;
+    }
 }
