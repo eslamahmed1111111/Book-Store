@@ -24,10 +24,7 @@ public class Book {
         this.numOfCopies = numOfCopies;
         this.thresholdQuantity = thresholdQuantity;
     }
-
-    public Book() {
-
-    }
+    public Book(){}
 
 
     public String getISBN() {

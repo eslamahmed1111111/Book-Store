@@ -108,8 +108,10 @@ public class Driver {
         Statement stmt = null;
 
         String query = "insert into book values( " + b.getISBN() + "," + "'" + b.getTitle() + "'" + "," +
-               "'" + b.getPublisher()  + "'" + "," +  "'" + b.getPublicationYear() + "'" +  "," + b.getPrice() + "," +
-               "'" + b.getCategory() + " ' " + "," + b.getNumOfCopies() + "," + b.getThresholdQuantity() + ");";
+               "'" + b.getPublisher() + "' " + "," + " '" +
+                b.getPublicationYear() + "'" +  "," + b.getPrice() + "," + "'" +
+                b.getCategory() + " ' " + "," + b.getNumOfCopies() + "," + b.getThresholdQuantity() + ","
+                 + " '"  + b.getAuthor() + "'" +");";
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -131,9 +133,9 @@ public class Driver {
 
         String query = "update book set title = '" + b.getTitle() + "' ," + "publisher = '"  + b.getPublisher()
                        + "' ," +  "author = '" +  b.getAuthor() + "' ,"  +  "publication_year = '"
-                       + b.getPublicationYear() + "' ," + "price = '" + b.getPrice()  + "' ,"
-                       +  "category = '" + b.getCategory() + "' ," + "no_copies = '" + b.getNumOfCopies()
-                       + "' ," + "threshold_quantity = '" + b.getThresholdQuantity() + "'" + " where ISBN = " + b.getISBN() + ";" ;
+                       + b.getPublicationYear() + "' ," + "price = " + b.getPrice()  + " ,"
+                       +  "category = '" + b.getCategory() + "' ," + "no_copies = " + b.getNumOfCopies()
+                       + " ," + "threshold_quantity = " + b.getThresholdQuantity() + " where ISBN = " + b.getISBN() + ";" ;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             myConnection = DriverManager.getConnection(url , name , pass);
