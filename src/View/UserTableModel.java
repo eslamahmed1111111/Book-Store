@@ -5,6 +5,7 @@ import Model.User;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class UserTableModel extends AbstractTableModel {
@@ -16,6 +17,7 @@ public class UserTableModel extends AbstractTableModel {
         users = new ArrayList<>();
         User user = new User("user_name","password", "first_name", "last_name",  "email", "phone_number","shipping address","user");
         users.add(user);
+        userNameToUser = new HashMap<>();
         userNameToUser.put(user.getUserName(),user);
     }
 
