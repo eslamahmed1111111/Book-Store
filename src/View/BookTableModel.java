@@ -87,8 +87,7 @@ public class BookTableModel extends AbstractTableModel {
         fireTableDataChanged();
     }
     public void deleteBook(int index){
-        System.out.println(index);
-        if(index == -1) return;
+        if(index < 0 || index >= books.size()) return;
         books.remove(index);
         fireTableDataChanged();
     }

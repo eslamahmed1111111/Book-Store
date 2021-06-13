@@ -41,23 +41,30 @@ public class ManagerView extends UserView {
 
     public void viewFindABookPanel(){
         super.viewFindABookPanel();
-        JButton addBookButton, deleteBookButton;
+        JButton addBookButton, deleteBookButton,placeOrderButton;
         addBookButton = new JButton("add Book");
         deleteBookButton = new JButton("delete Book");
         addBookButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                tableModel.newBook();
+                bookTableModel.newBook();
             }
         });
         deleteBookButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                tableModel.deleteBook(customJTable.getTable().getSelectedRow());
+                bookTableModel.deleteBook(bookCustomJTable.getTable().getSelectedRow());
+            }
+        });
+        placeOrderButton = new JButton("place order");
+        placeOrderButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+
             }
         });
 
-        findABookPanel.add(getPairLayouts(addBookButton,deleteBookButton));
+        findABookPanel.add(getPairLayouts(getPairLayouts(addBookButton,deleteBookButton),placeOrderButton));
     }
 
     public void view(){

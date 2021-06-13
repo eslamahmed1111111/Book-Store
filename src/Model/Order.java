@@ -13,7 +13,7 @@ public class Order {
         this.ISBN = ISBN;
         this.order_date = order_date;
         this.quantity = quantity;
-        this.price = price;
+        this    .price = price;
     }
 
     public String getUser_name() {

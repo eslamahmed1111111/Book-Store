@@ -26,8 +26,8 @@ public class UserView extends Frame{
         shoppingCartPanel = new JPanel();
     }
 
-    protected BookTableModel tableModel;
-    protected CustomJTable customJTable;
+    protected BookTableModel bookTableModel;
+    protected CustomJTable bookCustomJTable;
 
     public void viewFindABookPanel(){
         BoxLayout boxLayout = new BoxLayout(findABookPanel,BoxLayout.Y_AXIS);
@@ -38,10 +38,11 @@ public class UserView extends Frame{
         JComboBox comboBox = new JComboBox(items);
         JLabel searchByLabel= new JLabel("search by");
         JButton searchButton = new JButton("search");
+        JButton addToShoppingCartButton = new JButton("add to shopping card");
         findABookPanel.add(getPairLayouts(searchByLabel,comboBox));
-        findABookPanel.add(getPairLayouts(textField,searchButton));
-        tableModel = new BookTableModel();
-        customJTable = new CustomJTable(findABookPanel, tableModel);
+        findABookPanel.add(getPairLayouts(getPairLayouts(textField,searchButton),addToShoppingCartButton));
+        bookTableModel = new BookTableModel();
+        bookCustomJTable = new CustomJTable(findABookPanel, bookTableModel);
 
         searchButton.addActionListener(new ActionListener() {
             @Override
@@ -122,17 +123,19 @@ public class UserView extends Frame{
         });
     }
 
+    protected ShoppingCartTableModel shoppingCartTableModel;
+    protected CustomJTable shoppingCartCustomJTable;
     public void viewShoppingCartPanel(){
         shoppingCartPanel.setLayout(new BoxLayout(shoppingCartPanel,BoxLayout.Y_AXIS));
-        ShoppingCartTableModel tableModel = new ShoppingCartTableModel();
-        customJTable = new CustomJTable(shoppingCartPanel, tableModel);
+        shoppingCartTableModel = new ShoppingCartTableModel();
+        shoppingCartCustomJTable = new CustomJTable(shoppingCartPanel, shoppingCartTableModel);
         JButton deleteBookButton = new JButton("delete Book");
         JButton checkOutButton = new JButton("check out");
         shoppingCartPanel.add(getPairLayouts(deleteBookButton,checkOutButton));
         deleteBookButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                tableModel.deleteBook(customJTable.getTable().getSelectedRow());
+                shoppingCartTableModel.deleteBook(shoppingCartCustomJTable.getTable().getSelectedRow());
             }
         });
         checkOutButton.addActionListener(new ActionListener() {
