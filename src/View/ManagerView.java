@@ -111,6 +111,7 @@ public class ManagerView extends UserView {
                 }else{
                     modifyBookButton.setText("modify Book");
                     Book modifiedBook = bookTableModel.getCertainBook(bookTableModel.getSelectedCell());
+                    drive.modifyBook(modifiedBook);
                     bookTableModel.setSelectedCell(-1);
                     placeOrderButton.setEnabled(true);
                     addBookButton.setEnabled(true);

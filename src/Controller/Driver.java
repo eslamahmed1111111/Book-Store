@@ -19,8 +19,8 @@ public class Driver {
         ResultSet res = null;
         boolean b = true;
 
-        String query = "select * from users where user_name = " + userName + "AND password = "
-                + password + ";";
+        String query = "select * from users where user_name = '" + userName + "' " + "AND password = '"
+                + password + "'" + ";";
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -43,15 +43,15 @@ public class Driver {
         Connection myConnection = null;  //address of server
         Statement stmt = null;
 
-        String query = "insert into users values( " + u.getUserName() + "," + u.getPassword() + "," +
-               u.getFirstName() + "," + u.getLastName() + "," + u.getEmail() + "," +
-                u.getPhoneNumber() + "," + u.getShippingAddress() + u.getPrivilege() +  ");";
+        String query = "insert into users values( '" + u.getUserName() + "' , '" + u.getPassword() + "' , '" +
+               u.getFirstName() + "' , '" + u.getLastName() + "' , '" + u.getEmail() + "' , '" +
+                u.getPhoneNumber() + "' , '" + u.getShippingAddress() + "' , '" + u.getPrivilege()  + "'" + ");";
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             myConnection = DriverManager.getConnection(url , name , pass);
             stmt = myConnection.createStatement();
-            stmt.executeQuery(query);
+            stmt.executeUpdate(query);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -65,7 +65,7 @@ public class Driver {
         Statement stmt = null;
 
         String query = "update users set privilege = 'customer' " +
-                       " where user_name = " + u.getUserName() + ";" ;
+                       " where user_name = '" + u.getUserName() + "'" + ";" ;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             myConnection = DriverManager.getConnection(url , name , pass);
@@ -123,12 +123,17 @@ public class Driver {
 
     }
 
-    public void modifyBook(Book b , String s){
+    public void modifyBook(Book b ){
 
         Connection myConnection = null;  //address of server
         Statement stmt = null;
 
-        String query = "update book set " + s + " where ISBN = " + b.getISBN() + ";" ;
+
+        String query = "update book set title = '" + b.getTitle() + "' ," + "publisher = '"  + b.getPublisher()
+                       + "' ," +  "author = '" +  b.getAuthor() + "' ,"  +  "publication_year = '"
+                       + b.getPublicationYear() + "' ," + "price = '" + b.getPrice()  + "' ,"
+                       +  "category = '" + b.getCategory() + "' ," + "no_copies = '" + b.getNumOfCopies()
+                       + "' ," + "threshold_quantity = '" + b.getThresholdQuantity() + "'" + " where ISBN = " + b.getISBN() + ";" ;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             myConnection = DriverManager.getConnection(url , name , pass);
@@ -185,11 +190,15 @@ public class Driver {
         return users;
     }
 
-    public void editPersonalInfo(User u , String s){
+    public void editPersonalInfo(User u ){
         Connection myConnection = null;  //address of server
         Statement stmt = null;
 
-        String query = "update users set " + s + " where user_name = " + u.getUserName() + ";" ;
+        String query = "update users set user_name = '" + u.getUserName() + "' ," + "password = '"
+                       + u.getPassword() + "' ," + "first_name = '" + u.getFirstName() + "' ," + "last_name = '"
+                       + u.getLastName() + "' ," + "email = '" + u.getEmail() + "' ," + "phone_number = '"
+                       + u.getPhoneNumber() + "' ," + "shipping_address = '" + u.getShippingAddress() + "' ,"
+                       + "privilege = '" + u.getPrivilege() + "'" + " where user_name = '" + u.getUserName() + "'" + ";" ;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             myConnection = DriverManager.getConnection(url , name , pass);
@@ -253,7 +262,7 @@ public class Driver {
         Connection myConnection = null;  //address of server
         Statement stmt = null;
 
-        String query = "delete from shoppingCart where user_name =  " + s.getUser_name() + " AND ISBN = "
+        String query = "delete from shoppingCart where user_name =  '" + s.getUser_name()  + "'" + " AND ISBN = "
                  + s.getISBN() + ";" ;
 
         try {
@@ -313,8 +322,8 @@ public class Driver {
         ResultSet res = null;
         boolean b = true;
 
-        String query = "select * from creditcard where card_no = " + card_no + "AND expiry_date = "
-                        + expiry_date + ";";
+        String query = "select * from creditcard where card_no = " + card_no + "AND expiry_date = '"
+                        + expiry_date + "'" + ";";
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
