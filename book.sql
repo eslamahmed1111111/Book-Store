@@ -40,17 +40,15 @@ END IF;
 END ;;
 DELIMITER ;
  
- DELIMITER ;;
- CREATE TRIGGER books_AFTER_UPDATE AFTER UPDATE ON book
+DELIMITER ;;
+ CREATE TRIGGER books_AFTER_UPDATE AFTER UPDATE ON books
  FOR EACH ROW BEGIN
- DECLARE i INT DEFAULT 0;
-  IF (OLD.no_copies >= NEW.threshold_quantity && NEW.no_copies < NEW.threshold_quantity) THEN
-    IF (NEW.no_copies < 10) THEN
-       SET i = 10;
-    END IF;
-    insert into book_orders (ISBN,order_date,quantity,price) values
-    (NEW.ISBN,NOW(),NEW.threshold_quantity + i, NEW.price * (NEW.threshold_quantity + i));
-END IF;
+ 
+ if new.no_copies < new.threshold_quantity then
+ insert into book_orders (ISBN,order_date,quantity,price) values
+    (NEW.ISBN,NOW(),NEW.threshold_quantity  - new.no_copies, NEW.price * (NEW.threshold_quantity  - new.no_copies));
+  end if;
+ 
 END ;;
 DELIMITER ;
 
