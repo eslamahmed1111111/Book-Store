@@ -41,7 +41,7 @@ END ;;
 DELIMITER ;
  
 DELIMITER ;;
- CREATE TRIGGER books_AFTER_UPDATE AFTER UPDATE ON books
+ CREATE TRIGGER books_AFTER_UPDATE AFTER UPDATE ON book
  FOR EACH ROW BEGIN
  
  if new.no_copies < new.threshold_quantity then
