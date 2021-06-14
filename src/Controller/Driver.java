@@ -11,7 +11,6 @@ public class Driver {
     final String name = "root" ;
     final String pass = "alahlyfc";
 
-
 	
 	public boolean signIn(String userName, String password) {
         Connection myConnection = null;  //address of server
@@ -57,14 +56,37 @@ public class Driver {
             e.printStackTrace();
         }
 
+    }
 
+    public User getUser(String user_name){
+        Connection myConnection = null;  //address of server
+        Statement stmt = null;
+        ResultSet res = null;
+        User u = null;
+
+        String query = "select * from users where user_name = '" + user_name  + "'" + ";";
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            myConnection = DriverManager.getConnection(url , name , pass);
+            stmt = myConnection.createStatement();
+            res = stmt.executeQuery(query);
+
+            while (res.next()) {
+                 u = convertToUser(res);
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return u;
     }
 
     public void promoteUser(User u){
         Connection myConnection = null;  //address of server
         Statement stmt = null;
 
-        String query = "update users set privilege = 'customer' " +
+        String query = "update users set privilege = 'manager' " +
                        " where user_name = '" + u.getUserName() + "'" + ";" ;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");

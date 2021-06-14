@@ -1,6 +1,7 @@
 package View;
 
 import Controller.Driver;
+import Model.User;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -65,9 +66,20 @@ public class SignInView extends Frame{
         bt1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                if(driver.signIn(label1.getText(),label2.getText())){
+                if(driver.signIn(text2.getText(),text3.getText())){
                     getFrame().setVisible(false);
-                    new CustomerView("home page").view();
+                    User u = driver.getUser(text2.getText());
+                    if(u.getPrivilege().equals("customer")) {
+                        new CustomerView("home page").view();
+                        System.out.println("customer");
+                    }
+                    else if(u.getPrivilege().equals("manager")){
+                        new ManagerView("home page").view();
+                        System.out.println("manager");
+                    }
+
+                    System.out.println(u.getUserName());
+                    System.out.println(u.getLastName());
                 }
             }
         });

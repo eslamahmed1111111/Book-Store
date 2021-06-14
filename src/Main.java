@@ -7,7 +7,7 @@ public class Main {
 //        new registeration();
        // UserView homePage = new ManagerView("Home Page");
        // homePage.view();
-        SingUpView view = new SingUpView();
+        SignInView view = new SignInView();
         view.view();
     }
 }
